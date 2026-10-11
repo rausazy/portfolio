@@ -1,8 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080d1d">
 
   <meta
     name="description"
@@ -20,16 +23,152 @@
   >
 
   <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    /* Center the two remaining project cards */
+    #projects .project-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 30px;
+      width: 100%;
+      max-width: 850px;
+      margin: 0 auto;
+    }
+
+    #projects .project-card {
+      width: 100%;
+      min-width: 0;
+    }
+
+    #projects .project-image {
+      display: block;
+      width: 100%;
+    }
+
+    /* Minimal theme switch */
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 7px;
+      flex-shrink: 0;
+      width: 88px;
+      height: 42px;
+      padding: 5px 7px;
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      border-radius: 999px;
+      background: #151d35;
+      color: #aeb8d2;
+      cursor: pointer;
+      position: relative;
+      transition:
+        background 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+    }
+
+    .theme-toggle:hover {
+      border-color: #6c63ff;
+      box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.12);
+    }
+
+    .theme-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      z-index: 1;
+      transition: color 0.3s ease;
+    }
+
+    .theme-icon svg {
+      display: block;
+      width: 18px;
+      height: 18px;
+    }
+
+    .theme-moon {
+      color: #ffffff;
+    }
+
+    .theme-sun {
+      color: #929bb7;
+    }
+
+    .theme-track {
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: #6c63ff;
+      box-shadow: 0 2px 8px rgba(108, 99, 255, 0.35);
+      transition:
+        left 0.3s ease,
+        background 0.3s ease;
+    }
+
+    .theme-toggle:focus-visible {
+      outline: 2px solid #6c63ff;
+      outline-offset: 4px;
+    }
+
+    /* Light mode switch appearance */
+    body.light .theme-toggle {
+      background: #edf0fa;
+      border-color: #d7dced;
+    }
+
+    body.light .theme-track {
+      left: 51px;
+      background: #6c63ff;
+    }
+
+    body.light .theme-moon {
+      color: #929bb7;
+    }
+
+    body.light .theme-sun {
+      color: #ffffff;
+    }
+
+    @media (max-width: 700px) {
+      #projects .project-grid {
+        grid-template-columns: minmax(0, 1fr);
+        max-width: 450px;
+        gap: 25px;
+      }
+
+      .theme-toggle {
+        width: 82px;
+        height: 38px;
+      }
+
+      .theme-track {
+        top: 4px;
+        left: 4px;
+        width: 28px;
+        height: 28px;
+      }
+
+      body.light .theme-track {
+        left: 48px;
+      }
+
+      .theme-icon {
+        width: 23px;
+        height: 23px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-  <!-- ========================================
-       HEADER
-  ========================================= -->
-
+  <!-- HEADER -->
   <header class="site-header" id="top">
-
     <nav class="nav container">
 
       <a class="brand" href="#top" aria-label="Zyrha home">
@@ -39,6 +178,7 @@
 
       <button
         class="nav-toggle"
+        type="button"
         aria-label="Open navigation"
         aria-expanded="false"
       >
@@ -56,37 +196,62 @@
         <a href="#contact">Contact</a>
       </div>
 
+      <!-- DARK / LIGHT MODE SWITCH -->
+      <button
+        class="theme-toggle"
+        id="themeToggle"
+        type="button"
+        aria-label="Switch to light mode"
+        title="Switch to light mode"
+        aria-pressed="false"
+      >
+        <span class="theme-icon theme-moon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path
+              d="M20.2 15.4A8.6 8.6 0 0 1 8.6 3.8 8.7 8.7 0 1 0 20.2 15.4Z"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </span>
+
+        <span class="theme-track" aria-hidden="true"></span>
+
+        <span class="theme-icon theme-sun" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <circle
+              cx="12"
+              cy="12"
+              r="4"
+              stroke="currentColor"
+              stroke-width="1.8"
+            />
+            <path
+              d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+            />
+          </svg>
+        </span>
+      </button>
+
     </nav>
-
   </header>
-
-
-  <!-- ========================================
-       MAIN
-  ========================================= -->
 
   <main>
 
-
-    <!-- ========================================
-         HERO
-    ========================================= -->
-
+    <!-- HERO -->
     <section class="hero section-dark">
-
       <div class="hero-glow glow-one"></div>
       <div class="hero-glow glow-two"></div>
 
       <div class="container hero-grid">
 
-
-        <!-- HERO CONTENT -->
-
         <div class="hero-copy reveal">
-
-          <p class="eyebrow">
-            IT / WEB DEVELOPER
-          </p>
+          <p class="eyebrow">IT / WEB DEVELOPER</p>
 
           <h1>
             Hi, I'm<br>
@@ -99,11 +264,7 @@
           </p>
 
           <div class="hero-actions">
-
-            <a
-              class="btn btn-primary"
-              href="#projects"
-            >
+            <a class="btn btn-primary" href="#projects">
               View My Work <span>→</span>
             </a>
 
@@ -113,121 +274,68 @@
               target="_blank"
               rel="noopener"
             >
-              Download Résumé
+              Download Resumé
             </a>
-
           </div>
 
           <div class="socials">
-
-            <a
-              href="#"
-              aria-label="LinkedIn"
-            >
+            <a href="#" aria-label="LinkedIn">
               in <span>LinkedIn</span>
             </a>
 
-            <a
-              href="#"
-              aria-label="GitHub"
-            >
+            <a href="#" aria-label="GitHub">
               GH <span>GitHub</span>
             </a>
-
           </div>
-
         </div>
 
-
-        <!-- ========================================
-             HERO VISUAL
-        ========================================= -->
-
+        <!-- PROFILE PHOTO -->
         <div class="hero-visual reveal">
 
-
-          <!-- PROFILE PHOTO -->
-
           <div class="portrait-placeholder">
-
             <img
               src="assets/profile.jpg"
               alt="Zyrha Alliah Rausa"
             >
-
           </div>
 
-
-          <!-- ========================================
-               FLOATING CARD — WEB DEVELOPMENT
-          ========================================= -->
-
           <div class="float-card float-card-one">
-
-            <span class="float-icon">
-              ⌘
-            </span>
-
+            <span class="float-icon">⌘</span>
             <div>
               <strong>Web Development</strong>
               <small>Laravel · Vue · JavaScript</small>
             </div>
-
           </div>
 
-
-          <!-- ========================================
-               FLOATING CARD — IT SUPPORT
-          ========================================= -->
-
           <div class="float-card float-card-two">
-
-            <span class="float-icon">
-              ⌁
-            </span>
-
+            <span class="float-icon">⌁</span>
             <div>
               <strong>IT Support</strong>
               <small>Troubleshooting · Networking</small>
             </div>
-
           </div>
 
         </div>
-
       </div>
-
     </section>
 
-
-    <!-- ========================================
-         ABOUT
-    ========================================= -->
-
+    <!-- ABOUT -->
     <section class="section" id="about">
-
       <div class="container">
 
         <div class="section-heading reveal">
-
           <span class="section-line"></span>
-
-          <p class="eyebrow">
-            ABOUT ME
-          </p>
+          <p class="eyebrow">ABOUT ME</p>
 
           <h2>
             Turning ideas into working systems<br>
             and solving real-world problems.
           </h2>
-
         </div>
-
 
         <div class="about-grid">
 
           <div class="about-copy reveal">
-
             <p>
               I'm an Information Technology graduate with hands-on experience in both
               software development and IT support.
@@ -246,146 +354,77 @@
               solutions based on actual workplace requirements.
             </p>
 
-            <a
-              class="text-link"
-              href="#experience"
-            >
+            <a class="text-link" href="#experience">
               Learn More About Me →
             </a>
-
           </div>
-
 
           <div class="about-points reveal">
 
             <div class="info-card">
-
-              <div class="icon-circle">
-                ⌘
-              </div>
-
+              <div class="icon-circle">⌘</div>
               <div>
                 <h3>Web Development</h3>
-                <p>
-                  Build and maintain web applications and business systems.
-                </p>
+                <p>Build and maintain web applications and business systems.</p>
               </div>
-
             </div>
 
-
             <div class="info-card">
-
-              <div class="icon-circle">
-                ◉
-              </div>
-
+              <div class="icon-circle">◉</div>
               <div>
                 <h3>IT Support</h3>
-                <p>
-                  Troubleshoot hardware, software, and network-related issues.
-                </p>
+                <p>Troubleshoot hardware, software, and network-related issues.</p>
               </div>
-
             </div>
 
-
             <div class="info-card">
-
-              <div class="icon-circle">
-                ✦
-              </div>
-
+              <div class="icon-circle">✦</div>
               <div>
                 <h3>Problem Solving</h3>
-                <p>
-                  Investigate, analyze, and create practical solutions.
-                </p>
+                <p>Investigate, analyze, and create practical solutions.</p>
               </div>
-
             </div>
 
-
             <div class="info-card">
-
-              <div class="icon-circle">
-                ↗
-              </div>
-
+              <div class="icon-circle">↗</div>
               <div>
                 <h3>Continuous Learning</h3>
-                <p>
-                  Keep improving my skills in technology and real-world tools.
-                </p>
+                <p>Keep improving my skills in technology and real-world tools.</p>
               </div>
-
             </div>
 
           </div>
-
         </div>
-
       </div>
-
     </section>
 
-
-    <!-- ========================================
-         PROJECTS
-    ========================================= -->
-
-    <section
-      class="section section-soft"
-      id="projects"
-    >
-
+    <!-- PROJECTS -->
+    <section class="section section-soft" id="projects">
       <div class="container">
 
         <div class="section-heading split reveal">
-
           <div>
-
             <span class="section-line"></span>
-
-            <p class="eyebrow">
-              FEATURED PROJECTS
-            </p>
-
-            <h2>
-              Selected work
-            </h2>
-
+            <p class="eyebrow">FEATURED PROJECTS</p>
+            <h2>Selected work</h2>
             <p>
-              Real-world projects involving web development, automation, and business systems.
+              Projects involving web development, automation, and business systems,
+              built to address practical needs and improve everyday workflows.
             </p>
-
           </div>
-
-          <a
-            class="text-link"
-            href="#projects"
-          >
-            View All Projects →
-          </a>
-
         </div>
-
 
         <div class="project-grid">
 
-
           <!-- PROJECT 01 -->
-
           <article class="project-card reveal">
 
             <a
               class="project-image project-face"
               href="projects/facial-recognition.html"
-              aria-label="Facial Recognition project"
+              aria-label="View Facial Recognition Attendance System project details"
             >
-
               <div class="mock-window">
-
                 <div class="mock-top">
                   <i></i>
                   <i></i>
@@ -393,7 +432,6 @@
                 </div>
 
                 <div class="face-ui">
-
                   <div class="face-box">
                     <span>FACE</span>
                   </div>
@@ -403,27 +441,20 @@
                     <span>TIME IN</span>
                     <em>Recognized</em>
                   </div>
-
                 </div>
-
               </div>
-
             </a>
 
-
             <div class="project-body">
+              <p class="project-number">01</p>
 
-              <p class="project-number">
-                01
-              </p>
-
-              <h3>
-                Facial Recognition Attendance System
-              </h3>
+              <h3>Facial Recognition Attendance System</h3>
 
               <p>
-                An automated attendance system using facial recognition for employee
-                identification and attendance recording.
+                A web-based attendance application that uses facial recognition
+                to identify employees and record attendance activities. It combines
+                camera handling, employee face registration, database integration,
+                and attendance processing in one system.
               </p>
 
               <div class="tags">
@@ -431,309 +462,163 @@
                 <span>FastAPI</span>
                 <span>OpenCV</span>
                 <span>DeepFace</span>
+                <span>MySQL</span>
               </div>
 
-              <a
-                class="text-link"
-                href="projects/facial-recognition.html"
-              >
+              <a class="text-link" href="projects/facial-recognition.html">
                 View Details →
               </a>
-
             </div>
 
           </article>
 
-
           <!-- PROJECT 02 -->
-
           <article class="project-card reveal">
 
-          <a
-          class="project-image project-erp"
-          href="projects/costing-system.html"
-          aria-label="Costing System project"
-
-          >
-
-          <div class="mock-window">
-
-            <div class="mock-top">
-              <i></i>
-              <i></i>
-              <i></i>
-            </div>
-
-            <div class="dashboard-ui">
-
-              <div class="dash-side"></div>
-
-              <div class="dash-main">
-
-                <b>COSTING SYSTEM</b>
-
-                <div class="dash-bars">
+            <a
+              class="project-image project-erp"
+              href="projects/costing-system.html"
+              aria-label="View Costing System project details"
+            >
+              <div class="mock-window">
+                <div class="mock-top">
                   <i></i>
                   <i></i>
                   <i></i>
                 </div>
 
-                <div class="dash-table"></div>
+                <div class="dashboard-ui">
+                  <div class="dash-side"></div>
 
+                  <div class="dash-main">
+                    <b>COSTING SYSTEM</b>
+
+                    <div class="dash-bars">
+                      <i></i>
+                      <i></i>
+                      <i></i>
+                    </div>
+
+                    <div class="dash-table"></div>
+                  </div>
+                </div>
               </div>
-
-            </div>
-
-          </div>
-
             </a>
 
             <div class="project-body">
+              <p class="project-number">02</p>
 
-          <p class="project-number">
-            02
-          </p>
-
-          <h3>
-            Costing System
-          </h3>
-
-          <p>
-            A web-based business system designed to organize costing data,
-            manage records, and support the company's costing workflow.
-          </p>
-
-          <div class="tags">
-            <span>Laravel</span>
-            <span>Vue.js</span>
-            <span>MySQL</span>
-            <span>Vite</span>
-          </div>
-
-          <a
-            class="text-link"
-            href="projects/costing-system.html"
-          >
-            View Details →
-          </a>
-
-            </div>
-
-          </article>
-
-
-
-          <!-- PROJECT 03 -->
-
-          <article class="project-card reveal">
-
-            <a
-              class="project-image project-id"
-              href="projects/id-generator.html"
-              aria-label="Employee ID Generator project"
-            >
-
-              <div class="id-stack">
-
-                <div class="id-card"></div>
-                <div class="id-card back"></div>
-                <div class="id-card third"></div>
-
-              </div>
-
-            </a>
-
-
-            <div class="project-body">
-
-              <p class="project-number">
-                03
-              </p>
-
-              <h3>
-                Employee ID Generator
-              </h3>
+              <h3>Costing System</h3>
 
               <p>
-                A web-based tool for generating employee ID cards with QR codes
-                and print-ready layouts.
+                A web-based business application designed to organize costing
+                information, manage records, and support internal costing workflows.
+                Developed with a structured interface and database-driven functionality
+                to make business information easier to maintain and access.
               </p>
 
               <div class="tags">
                 <span>Laravel</span>
                 <span>Vue.js</span>
                 <span>MySQL</span>
-                <span>QR Code</span>
+                <span>Vite</span>
               </div>
 
-              <a
-                class="text-link"
-                href="projects/id-generator.html"
-              >
+              <a class="text-link" href="projects/costing-system.html">
                 View Details →
               </a>
-
             </div>
 
           </article>
 
         </div>
-
       </div>
-
     </section>
 
-
-    <!-- ========================================
-         EXPERIENCE
-    ========================================= -->
-
-    <section
-      class="section"
-      id="experience"
-    >
-
+    <!-- EXPERIENCE -->
+    <section class="section" id="experience">
       <div class="container">
 
         <div class="section-heading reveal">
-
           <span class="section-line"></span>
-
-          <p class="eyebrow">
-            EXPERIENCE
-          </p>
-
-          <h2>
-            Hands-on IT experience
-          </h2>
-
+          <p class="eyebrow">EXPERIENCE</p>
+          <h2>Hands-on IT experience</h2>
         </div>
-
 
         <div class="experience-card reveal">
 
           <div class="experience-head">
-
             <div class="company-logo">
               EL<br>
               <small>Optodev</small>
             </div>
 
             <div>
-              <h3>
-                IT Intern — EssilorLuxottica / Optodev
-              </h3>
-
-              <p>
-                IT Department · 7 months
-              </p>
+              <h3>IT Intern — EssilorLuxottica / Optodev</h3>
+              <p>IT Department · 7 months</p>
             </div>
-
           </div>
 
-
           <p class="experience-intro">
-            Provided technical support and assisted with IT operations across the organization,
-            gaining practical experience in troubleshooting, hardware, software, networking,
-            and user support.
+            Provided technical support and assisted with IT operations across the
+            organization, gaining practical experience in troubleshooting, hardware,
+            software, networking, and user support.
           </p>
-
 
           <div class="responsibility-grid">
 
             <div>
-
-              <h4>
-                IT Support
-              </h4>
-
+              <h4>IT Support</h4>
               <ul>
                 <li>Walk-ins and calls</li>
-                <li>Hardware & software troubleshooting</li>
-                <li>PC reimaging & software installation</li>
-                <li>Microsoft 365 / Office support</li>
+                <li>Hardware and software troubleshooting</li>
+                <li>PC reimaging and software installation</li>
+                <li>Microsoft 365 and Office support</li>
                 <li>Active Directory account support</li>
               </ul>
-
             </div>
 
-
             <div>
-
-              <h4>
-                Hardware & Networking
-              </h4>
-
+              <h4>Hardware & Networking</h4>
               <ul>
                 <li>LAN troubleshooting</li>
-                <li>Network printers & IP devices</li>
-                <li>NetScout & tone generator</li>
-                <li>Cisco switches & Meraki</li>
-                <li>Wi-Fi & network support</li>
+                <li>Network printers and IP devices</li>
+                <li>NetScout and tone generator</li>
+                <li>Cisco switches and Meraki</li>
+                <li>Wi-Fi and network support</li>
               </ul>
-
             </div>
 
-
             <div>
-
-              <h4>
-                IT Operations
-              </h4>
-
+              <h4>IT Operations</h4>
               <ul>
                 <li>Asset management</li>
                 <li>Employee data encoding</li>
                 <li>Onboarding assistance</li>
-                <li>IT policies & OJT orientation</li>
+                <li>IT policies and OJT orientation</li>
                 <li>Support across departments</li>
               </ul>
-
             </div>
 
           </div>
-
         </div>
-
       </div>
-
     </section>
 
-
-    <!-- ========================================
-         SKILLS
-    ========================================= -->
-
-    <section
-      class="section section-soft"
-      id="skills"
-    >
-
+    <!-- SKILLS -->
+    <section class="section section-soft" id="skills">
       <div class="container">
 
         <div class="section-heading reveal">
-
           <span class="section-line"></span>
-
-          <p class="eyebrow">
-            SKILLS
-          </p>
-
-          <h2>
-            Tools I use to build, support, and solve.
-          </h2>
-
+          <p class="eyebrow">SKILLS</p>
+          <h2>Tools I use to build, support, and solve.</h2>
         </div>
-
 
         <div class="skills-grid">
 
           <div class="skill-group reveal">
-
-            <h3>
-              Web Development
-            </h3>
-
+            <h3>Web Development</h3>
             <div class="skill-tags">
               <span>Laravel</span>
               <span>Vue.js</span>
@@ -744,16 +629,10 @@
               <span>Vite</span>
               <span>REST APIs</span>
             </div>
-
           </div>
 
-
           <div class="skill-group reveal">
-
-            <h3>
-              Programming & Systems
-            </h3>
-
+            <h3>Programming & Systems</h3>
             <div class="skill-tags">
               <span>Python</span>
               <span>FastAPI</span>
@@ -761,16 +640,10 @@
               <span>CRUD Development</span>
               <span>Web Applications</span>
             </div>
-
           </div>
 
-
           <div class="skill-group reveal">
-
-            <h3>
-              IT Support
-            </h3>
-
+            <h3>IT Support</h3>
             <div class="skill-tags">
               <span>Hardware Troubleshooting</span>
               <span>Software Troubleshooting</span>
@@ -779,16 +652,10 @@
               <span>LAN Troubleshooting</span>
               <span>Printer Support</span>
             </div>
-
           </div>
 
-
           <div class="skill-group reveal">
-
-            <h3>
-              Tools & Platforms
-            </h3>
-
+            <h3>Tools & Platforms</h3>
             <div class="skill-tags">
               <span>Microsoft 365</span>
               <span>Microsoft Office</span>
@@ -797,230 +664,105 @@
               <span>Cisco</span>
               <span>Meraki</span>
             </div>
-
           </div>
 
         </div>
-
       </div>
-
     </section>
 
-
-    <!-- ========================================
-         EDUCATION
-    ========================================= -->
-
-    <section
-      class="section"
-      id="education"
-    >
-
+    <!-- EDUCATION -->
+    <section class="section" id="education">
       <div class="container">
 
         <div class="section-heading reveal">
-
           <span class="section-line"></span>
-
-          <p class="eyebrow">
-            EDUCATION & CERTIFICATION
-          </p>
-
-          <h2>
-            Background & achievements
-          </h2>
-
+          <p class="eyebrow">EDUCATION & CERTIFICATION</p>
+          <h2>Background & achievements</h2>
         </div>
 
+        <div class="credentials-grid">
 
-   
-<div class="credentials-grid">
+          <div class="credential reveal">
+            <div class="credential-icon">⌂</div>
+            <h3>Bachelor of Science in Information Technology</h3>
+            <p>National University – Laguna</p>
+            <small>Information Technology</small>
+          </div>
 
+          <div class="credential reveal">
+            <div class="credential-icon">◇</div>
+            <h3>IT Specialist Certification — Network Security</h3>
+            <p>IT Specialist Certification</p>
+            <small>Network Security fundamentals and concepts</small>
+          </div>
 
-  <div class="credential reveal">
+          <div class="credential reveal">
+            <div class="credential-icon">★</div>
+            <h3>Cum Laude</h3>
+            <p>Academic Achievement</p>
+            <small>
+              Awarded Latin honors for strong academic performance throughout
+              undergraduate studies.
+            </small>
+          </div>
 
-    <div class="credential-icon">
-      ⌂
-    </div>
+          <div class="credential reveal">
+            <div class="credential-icon">✦</div>
+            <h3>Best Capstone Awardee</h3>
+            <p>Capstone Project Recognition</p>
+            <small>
+              Recognized for outstanding performance and contribution to the
+              capstone project.
+            </small>
+          </div>
 
-    <h3>
-      Bachelor of Science in Information Technology
-    </h3>
-
-    <p>
-      National University – Laguna
-    </p>
-
-    <small>
-      Information Technology
-    </small>
-
-  </div>
-
-
-  <div class="credential reveal">
-
-    <div class="credential-icon">
-      ◇
-    </div>
-
-    <h3>
-      IT Specialist Certification — Network Security
-    </h3>
-
-    <p>
-      IT Specialist Certification
-    </p>
-
-    <small>
-      Network Security fundamentals and concepts
-    </small>
-
-  </div>
-
-
-  <div class="credential reveal">
-
-    <div class="credential-icon">
-      ★
-    </div>
-
-    <h3>
-      Cum Laude
-    </h3>
-
-    <p>
-      Academic Achievement
-    </p>
-
-    <small>
-      Awarded Latin honors for strong academic performance throughout undergraduate studies.
-    </small>
-
-  </div>
-
-
-  <div class="credential reveal">
-
-    <div class="credential-icon">
-      ✦
-    </div>
-
-    <h3>
-      Best Capstone Awardee
-    </h3>
-
-    <p>
-      Capstone Project Recognition
-    </p>
-
-    <small>
-      Recognized for outstanding performance and contribution to the capstone project.
-    </small>
-
-  </div>
-
-
-</div>
-
-
+        </div>
       </div>
-
     </section>
 
-
-    <!-- ========================================
-         CONTACT
-    ========================================= -->
-
-    <section
-      class="cta-section"
-      id="contact"
-    >
-
+    <!-- CONTACT -->
+    <section class="cta-section" id="contact">
       <div class="container cta">
 
         <div>
-
-          <p class="eyebrow">
-            LET'S CONNECT
-          </p>
-
-          <h2>
-            Let's build something great together.
-          </h2>
+          <p class="eyebrow">LET'S CONNECT</p>
+          <h2>Let's build something great together.</h2>
 
           <p>
             I'm open to opportunities where I can contribute, continue learning,
             and grow as an IT / Web Developer.
           </p>
-
         </div>
 
-        <a
-          class="btn btn-light"
-          href="mailto:rausazyrha@gmail.com"
-        >
+        <a class="btn btn-light" href="mailto:rausazyrha@gmail.com">
           Get in Touch →
         </a>
 
       </div>
-
     </section>
 
   </main>
 
-
-  <!-- ========================================
-       FOOTER
-  ========================================= -->
-
+  <!-- FOOTER -->
   <footer class="footer">
-
     <div class="container footer-inner">
 
       <div>
-
-        <strong>
-          ZA
-        </strong>
-
-        <span>
-          Zyrha Alliah Rausa
-        </span>
-
-        <small>
-          IT / Web Developer
-        </small>
-
+        <strong>ZA</strong>
+        <span>Zyrha Alliah Rausa</span>
+        <small>IT / Web Developer</small>
       </div>
-
 
       <div class="footer-links">
-
-        <a href="#">
-          LinkedIn
-        </a>
-
-        <a href="#">
-          GitHub
-        </a>
-
-        <a href="mailto:rausazyrha@gmail.com">
-          Email
-        </a>
-
+        <a href="#">LinkedIn</a>
+        <a href="#">GitHub</a>
+        <a href="mailto:rausazyrha@gmail.com">Email</a>
       </div>
 
-
-      <small>
-        Build · Learn · Grow
-      </small>
+      <small>Build · Learn · Grow</small>
 
     </div>
-
   </footer>
-
 
   <script src="js/script.js"></script>
 
