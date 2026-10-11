@@ -1,63 +1,688 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Facial Recognition Attendance System — Zyrha Alliah Rausa portfolio project.">
+  <meta
+    name="description"
+    content="Explore the Facial Recognition Attendance System developed by Zyrha Alliah Rausa, featuring facial recognition, employee registration, and attendance tracking."
+  >
+
   <title>Facial Recognition Attendance System | Zyrha Alliah Rausa</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
   <link rel="stylesheet" href="../css/style.css">
+
   <style>
-    .project-hero { background: var(--navy); color: white; padding: 95px 0 75px; }
-    .project-hero h1 { max-width: 760px; font-size: clamp(40px, 6vw, 68px); line-height: 1.05; letter-spacing: -.045em; margin: 0; }
-    .project-hero p.lead { max-width: 720px; color: #bcc5db; font-size: 15px; margin: 20px 0 0; }
-    .project-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 22px; }
-    .project-tags span { padding: 6px 10px; border: 1px solid rgba(255,255,255,.2); border-radius: 99px; color: #dbe0ef; font-size: 10px; }
-    .project-content { padding: 80px 0; }
-    .project-feature { min-height: 330px; border-radius: 20px; background: linear-gradient(135deg,#111a38,#4540a8); display:grid; place-items:center; overflow:hidden; margin-bottom:65px; }
-    .feature-placeholder { color:#d9d9ff; text-align:center; padding:30px; }
-    .feature-placeholder strong { display:block; font-size:32px; margin-bottom:8px; }
-    .feature-placeholder span { font-size:12px; opacity:.75; }
-    .project-info-grid { display:grid; grid-template-columns:1fr 1fr; gap:50px; }
-    .project-info h2 { font-size:24px; margin:0 0 14px; }
-    .project-info p, .project-info li { color:var(--muted); font-size:13px; }
-    .project-info ul { padding-left:20px; }
-    .project-bottom { margin-top:65px; padding-top:30px; border-top:1px solid var(--line); }
-    @media(max-width:700px) { .project-info-grid {grid-template-columns:1fr; gap:35px;} .project-feature {min-height:240px;} }
+    .project-hero {
+      background: var(--navy);
+      color: white;
+      padding: 95px 0 75px;
+    }
+
+    .project-hero h1 {
+      max-width: 760px;
+      font-size: clamp(40px, 6vw, 68px);
+      line-height: 1.05;
+      letter-spacing: -.045em;
+      margin: 0;
+    }
+
+    .project-hero p.lead {
+      max-width: 720px;
+      color: #bcc5db;
+      font-size: 15px;
+      margin: 20px 0 0;
+      line-height: 1.8;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 22px;
+    }
+
+    .project-tags span {
+      padding: 6px 10px;
+      border: 1px solid rgba(255, 255, 255, .2);
+      border-radius: 99px;
+      color: #dbe0ef;
+      font-size: 10px;
+    }
+
+    .project-content {
+      padding: 80px 0;
+    }
+
+    /* Project screenshots */
+
+    .project-gallery {
+      margin-bottom: 75px;
+    }
+
+    .gallery-heading {
+      margin-bottom: 30px;
+    }
+
+    .gallery-heading .eyebrow {
+      margin-bottom: 8px;
+    }
+
+    .gallery-heading h2 {
+      margin: 0 0 10px;
+      font-size: 30px;
+    }
+
+    .gallery-heading p {
+      max-width: 750px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.8;
+      margin: 0;
+    }
+
+    .screenshot-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 25px;
+    }
+
+    .screenshot-card {
+      min-width: 0;
+      margin: 0;
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      overflow: hidden;
+      transition:
+        transform .3s ease,
+        border-color .3s ease,
+        box-shadow .3s ease;
+    }
+
+    .screenshot-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(108, 99, 255, .45);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, .18);
+    }
+
+    .screenshot-link {
+      display: block;
+      cursor: zoom-in;
+      background: #080d1d;
+      overflow: hidden;
+    }
+
+    .screenshot-link img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform .4s ease;
+    }
+
+    .screenshot-card:hover .screenshot-link img {
+      transform: scale(1.025);
+    }
+
+    .screenshot-caption {
+      padding: 18px 20px 20px;
+    }
+
+    .screenshot-caption strong {
+      display: block;
+      color: var(--ink);
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 8px;
+    }
+
+    .screenshot-caption span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    /* Project information */
+
+    .project-info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+    }
+
+    .project-info h2 {
+      font-size: 24px;
+      line-height: 1.4;
+      margin: 0 0 14px;
+    }
+
+    .project-info p,
+    .project-info li {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.9;
+    }
+
+    .project-info p {
+      margin: 0;
+    }
+
+    .project-info ul {
+      padding-left: 20px;
+      margin: 0;
+    }
+
+    .project-info li {
+      margin-bottom: 10px;
+      padding-left: 3px;
+    }
+
+    .project-info li strong {
+      color: var(--ink);
+    }
+
+    .project-bottom {
+      margin-top: 65px;
+      padding-top: 30px;
+      border-top: 1px solid var(--line);
+    }
+
+    .project-bottom .text-link {
+      display: inline-block;
+    }
+
+    /* Image lightbox */
+
+    .image-lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+      background: rgba(3, 6, 16, .94);
+    }
+
+    .image-lightbox.active {
+      display: flex;
+    }
+
+    .lightbox-image {
+      display: block;
+      max-width: 94vw;
+      max-height: 90vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 10px;
+      box-shadow: 0 25px 80px rgba(0, 0, 0, .45);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 25px;
+      width: 42px;
+      height: 42px;
+      border: 1px solid rgba(255, 255, 255, .2);
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .08);
+      color: white;
+      font-size: 25px;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .lightbox-close:hover {
+      background: rgba(255, 255, 255, .16);
+    }
+
+    @media (max-width: 700px) {
+      .project-hero {
+        padding: 75px 0 55px;
+      }
+
+      .project-content {
+        padding: 60px 0;
+      }
+
+      .project-info-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+
+      .screenshot-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .project-gallery {
+        margin-bottom: 55px;
+      }
+
+      .image-lightbox {
+        padding: 15px;
+      }
+
+      .lightbox-close {
+        top: 12px;
+        right: 12px;
+      }
+    }
   </style>
 </head>
+
 <body>
+
+  <!-- Header -->
+
   <header class="site-header">
     <nav class="nav container">
-      <a class="brand" href="../index.html"><span class="brand-mark">ZA</span><span>Zyrha Alliah Rausa</span></a>
+      <a class="brand" href="../index.html">
+        <span class="brand-mark">ZA</span>
+        <span>Zyrha Alliah Rausa</span>
+      </a>
+
       <div class="nav-links">
-        <a href="../index.html#about">About</a><a href="../index.html#projects">Projects</a><a href="../index.html#experience">Experience</a><a href="../index.html#skills">Skills</a><a href="../index.html#contact">Contact</a>
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#projects">Projects</a>
+        <a href="../index.html#experience">Experience</a>
+        <a href="../index.html#skills">Skills</a>
+        <a href="../index.html#contact">Contact</a>
       </div>
     </nav>
   </header>
+
   <main>
+
+    <!-- Project hero -->
+
     <section class="project-hero">
       <div class="container">
-        <a class="text-link" style="color:#aaa6ff;margin-bottom:22px" href="../index.html#projects">← Back to Projects</a>
+
+        <a
+          class="text-link"
+          style="color: #aaa6ff; margin-bottom: 22px;"
+          href="../index.html#projects"
+        >
+          ← Back to Projects
+        </a>
+
         <p class="eyebrow">FEATURED PROJECT</p>
+
         <h1>Facial Recognition Attendance System</h1>
-        <div class="project-tags"><span>Python</span><span>FastAPI</span><span>OpenCV</span><span>DeepFace</span><span>MySQL</span><span>JavaScript</span></div>
-        <p class="lead">An automated attendance system designed to streamline employee attendance recording through facial recognition.</p>
+
+        <div class="project-tags">
+          <span>Python</span>
+          <span>FastAPI</span>
+          <span>OpenCV</span>
+          <span>DeepFace</span>
+          <span>MySQL</span>
+          <span>JavaScript</span>
+          <span>HTML</span>
+          <span>CSS</span>
+        </div>
+
+        <p class="lead">
+          A web-based attendance management system that uses facial
+          recognition to identify employees and record their attendance.
+          The application combines employee registration, camera-based
+          recognition, attendance tracking, and record searching in one
+          interface designed for a workplace environment.
+        </p>
+
       </div>
     </section>
+
+    <!-- Project content -->
+
     <section class="project-content">
       <div class="container">
-        <div class="project-feature"><div class="feature-placeholder"><strong>Facial Recognition Attendance System</strong><span>Replace this area with your project screenshots.</span></div></div>
+
+        <!-- Screenshot gallery -->
+
+        <section class="project-gallery">
+
+          <div class="gallery-heading">
+            <p class="eyebrow">PROJECT SCREENSHOTS</p>
+            <h2>System Overview</h2>
+
+            <p>
+              Explore the main interfaces of the Facial Recognition
+              Attendance System, from real-time employee identification
+              and attendance recording to employee registration and
+              attendance record monitoring. These screenshots highlight
+              the system's interface, core functionalities, and practical
+              application in a workplace environment.
+            </p>
+          </div>
+
+          <div class="screenshot-grid">
+
+            <!-- Screenshot 1 -->
+
+            <figure class="screenshot-card">
+              <a
+                class="screenshot-link"
+                href="../screenshots/facial-recognition/images/facialrecogmain.png"
+                data-lightbox
+                aria-label="View the attendance interface screenshot in full size"
+              >
+                <img
+                  src="../screenshots/facial-recognition/images/facialrecogmain.png"
+                  alt="Main interface of the Facial Recognition Attendance System"
+                  loading="lazy"
+                >
+              </a>
+
+              <figcaption class="screenshot-caption">
+                <strong>Facial Recognition and Attendance Interface</strong>
+
+                <span>
+                  The main interface allows employees to record their
+                  attendance through facial recognition. It displays the
+                  camera feed, recognition status, attendance action options,
+                  and recent attendance activity to support a more organized
+                  and efficient timekeeping process.
+                </span>
+              </figcaption>
+            </figure>
+
+            <!-- Screenshot 2 -->
+
+            <figure class="screenshot-card">
+              <a
+                class="screenshot-link"
+                href="../screenshots/facial-recognition/images/facial-recognition-1.png"
+                data-lightbox
+                aria-label="View the employee registration screenshot in full size"
+              >
+                <img
+                  src="../screenshots/facial-recognition/images/facial-recognition-1.png"
+                  alt="Employee registration and facial data capture interface"
+                  loading="lazy"
+                >
+              </a>
+
+              <figcaption class="screenshot-caption">
+                <strong>Employee Registration and Face Capture</strong>
+
+                <span>
+                  This interface supports the registration of employee
+                  information and the capture of facial data for recognition.
+                  It helps prepare employee profiles for identification by
+                  connecting the registration process with the system's
+                  facial recognition workflow.
+                </span>
+              </figcaption>
+            </figure>
+
+            <!-- Screenshot 3 -->
+
+            <figure class="screenshot-card">
+              <a
+                class="screenshot-link"
+                href="../screenshots/facial-recognition/images/facialrecogattendance.png"
+                data-lightbox
+                aria-label="View the attendance records screenshot in full size"
+              >
+                <img
+                  src="../screenshots/facial-recognition/images/facialrecogattendance.png"
+                  alt="Attendance search and records interface"
+                  loading="lazy"
+                >
+              </a>
+
+              <figcaption class="screenshot-caption">
+                <strong>Attendance Records and Search</strong>
+
+                <span>
+                  The attendance records interface allows users to review
+                  logged attendance by date and employee. It presents
+                  information such as department, position, attendance
+                  activity, time, and recognition confidence value, with an
+                  option to view the associated attendance image when needed.
+                </span>
+              </figcaption>
+            </figure>
+
+          </div>
+        </section>
+
+        <!-- Project details -->
+
         <div class="project-info-grid">
-          <div class="project-info"><h2>The Problem</h2><p>The organization needed a more streamlined way to identify employees and record attendance while working within an existing database and local network environment.</p><h2 style="margin-top:38px">The Solution</h2><p>I developed a web-based attendance workflow combining facial recognition, employee registration, database integration, attendance processing, and camera handling.</p></div>
-          <div class="project-info"><h2>Key Features</h2><ul><li>Facial recognition for employee identification</li><li>Employee registration and face capture</li><li>Automated attendance recording</li><li>Multiple attendance types</li><li>Employee database integration</li><li>Camera and recognition-session management</li><li>Unrecognized-face handling</li><li>LAN-based deployment</li></ul><h2 style="margin-top:38px">My Role</h2><p>I worked across the backend, recognition workflow, database integration, attendance processing, web interface, and deployment troubleshooting.</p></div>
+
+          <div class="project-info">
+
+            <h2>The Problem</h2>
+
+            <p>
+              Recording and monitoring employee attendance requires a
+              reliable process for identifying employees and maintaining
+              accurate time logs. Traditional attendance workflows can
+              involve manual steps and may require additional effort when
+              reviewing attendance activities. The system also needed to
+              operate within an existing employee database and a local
+              network environment while accommodating different attendance
+              actions throughout the workday.
+            </p>
+
+            <h2 style="margin-top: 38px;">The Solution</h2>
+
+            <p>
+              I developed a web-based Facial Recognition Attendance System
+              that combines facial identification, employee registration,
+              and attendance recording in one interface. The system uses a
+              camera-based recognition workflow to identify registered
+              employees and supports attendance actions such as Time In,
+              Lunch Out, Lunch In, and Time Out. It also provides attendance
+              record searching and image viewing to help users review
+              recorded activities. The application integrates with the
+              employee data source and is designed for deployment within a
+              local network environment.
+            </p>
+
+          </div>
+
+          <div class="project-info">
+
+            <h2>Key Features</h2>
+
+            <ul>
+              <li>
+                <strong>Facial Recognition:</strong>
+                Identifies registered employees using captured facial data.
+              </li>
+
+              <li>
+                <strong>Employee Registration:</strong>
+                Supports employee profile registration and facial data
+                capture.
+              </li>
+
+              <li>
+                <strong>Attendance Tracking:</strong>
+                Supports Time In, Lunch Out, Lunch In, and Time Out activities.
+              </li>
+
+              <li>
+                <strong>Attendance Monitoring:</strong>
+                Displays recent attendance activities and their corresponding
+                times.
+              </li>
+
+              <li>
+                <strong>Attendance Search:</strong>
+                Allows attendance records to be searched by date and employee.
+              </li>
+
+              <li>
+                <strong>Recognition Status:</strong>
+                Provides feedback during the recognition process and handles
+                faces that cannot be identified.
+              </li>
+
+              <li>
+                <strong>Database Integration:</strong>
+                Connects employee information and attendance workflows with
+                the existing data environment.
+              </li>
+
+              <li>
+                <strong>Local Network Deployment:</strong>
+                Supports access to the application within the intended
+                workplace network environment.
+              </li>
+            </ul>
+
+            <h2 style="margin-top: 38px;">My Role</h2>
+
+            <p>
+              I worked on the development and integration of the system's
+              major components, including the web interface, backend
+              processing, facial recognition workflow, employee data
+              handling, and attendance recording. I also worked on the
+              attendance action flow, camera interaction, recognition status
+              handling, and attendance record searching. In addition, I
+              handled database integration and deployment troubleshooting
+              to help the application operate within the local network
+              environment.
+            </p>
+
+            <h2 style="margin-top: 38px;">Technologies Used</h2>
+
+            <p>
+              <strong>
+                Python, FastAPI, OpenCV, DeepFace, MySQL, JavaScript, HTML,
+                and CSS.
+              </strong>
+              These technologies support backend processing, facial
+              recognition, camera interaction, data storage, and the
+              web-based user interface.
+            </p>
+
+          </div>
         </div>
-        <div class="project-bottom"><a class="text-link" href="../index.html#projects">← Back to all projects</a></div>
+
+        <!-- Back to projects -->
+
+        <div class="project-bottom">
+          <a class="text-link" href="../index.html#projects">
+            ← Back to all projects
+          </a>
+        </div>
+
       </div>
     </section>
   </main>
-  <footer class="footer"><div class="container footer-inner"><div><strong>ZA</strong><span>Zyrha Alliah Rausa</span><small>IT / Web Developer</small></div><small>Build · Learn · Grow</small></div></footer>
+
+  <!-- Image lightbox -->
+
+  <div
+    class="image-lightbox"
+    id="imageLightbox"
+    aria-hidden="true"
+    role="dialog"
+    aria-label="Project screenshot preview"
+  >
+    <button
+      class="lightbox-close"
+      id="lightboxClose"
+      type="button"
+      aria-label="Close image"
+    >
+      ×
+    </button>
+
+    <img
+      class="lightbox-image"
+      id="lightboxImage"
+      src=""
+      alt=""
+    >
+  </div>
+
+  <!-- Footer -->
+
+  <footer class="footer">
+    <div class="container footer-inner">
+
+      <div>
+        <strong>ZA</strong>
+        <span>Zyrha Alliah Rausa</span>
+        <small>IT / Web Developer</small>
+      </div>
+
+      <small>Build · Learn · Grow</small>
+
+    </div>
+  </footer>
+
+  <!-- Lightbox script -->
+
+  <script>
+    const lightbox = document.getElementById("imageLightbox");
+    const lightboxImage = document.getElementById("lightboxImage");
+    const lightboxClose = document.getElementById("lightboxClose");
+    const screenshotLinks = document.querySelectorAll("[data-lightbox]");
+
+    screenshotLinks.forEach((link) => {
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+
+        const thumbnail = link.querySelector("img");
+
+        lightboxImage.src = link.href;
+        lightboxImage.alt = thumbnail
+          ? thumbnail.alt
+          : "Project screenshot";
+
+        lightbox.classList.add("active");
+        lightbox.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+
+        lightboxClose.focus();
+      });
+    });
+
+    function closeLightbox() {
+      lightbox.classList.remove("active");
+      lightbox.setAttribute("aria-hidden", "true");
+      lightboxImage.src = "";
+      document.body.style.overflow = "";
+    }
+
+    lightboxClose.addEventListener("click", closeLightbox);
+
+    lightbox.addEventListener("click", (event) => {
+      if (event.target === lightbox) {
+        closeLightbox();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (
+        event.key === "Escape" &&
+        lightbox.classList.contains("active")
+      ) {
+        closeLightbox();
+      }
+    });
+
+    lightboxImage.addEventListener("error", () => {
+      lightboxImage.alt = "Unable to load this screenshot.";
+    });
+  </script>
+
 </body>
 </html>
